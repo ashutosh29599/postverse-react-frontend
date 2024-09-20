@@ -38,11 +38,12 @@ const Login = () => {
                             Login to enter the PostVerse!
                         </p>
                         <p className="text-sm pt-6">
-                            Don't have an accounts? Register!
+                            Don't have an accounts?
+                            <Link to={'/register'}>
+                                <button className="text-sm ml-2 bg-white text-blue-700/75 py-1 px-1 rounded-lg">Register!</button>
+                            </Link>
                         </p>
-                        <Link to={'/register'}>
-                            <button className="text-sm mt-3 bg-white text-blue-700/75 py-2 px-4 rounded-lg">Register</button>
-                        </Link>
+                        
                     </div>
                 </div>
             </div>
