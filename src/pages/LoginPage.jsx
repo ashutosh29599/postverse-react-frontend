@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import AuthContext from "../context/AuthContext";
 
@@ -23,11 +21,9 @@ const Login = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        console.log("in handleLogin....")
+        console.log("in handleLogin....");
         try {
             await login(loginFormData.username, loginFormData.password);
-
-            toast.success("Welcome to PostVerse!");
 
             return navigate("/profile");
         } catch (error) {

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -36,7 +37,7 @@ const AuthProvider = ({ children }) => {
             const response = await axios.get("api/accounts/check-auth/", {
                 withCredentials: true,
             });
-            console.log("Auth status response:", response);
+            // console.log("Auth status response:", response);
 
             if (response.status === 200) {
                 setIsAuthenticated(true);
@@ -67,26 +68,25 @@ const AuthProvider = ({ children }) => {
             );
             setIsAuthenticated(true);
             setUser(username);
-            console.log("login successful...");
         } catch (error) {
             throw error;
         }
     };
 
-    // const logout = async () => {
-    //     try {
-    //         await axios.post(
-    //             "api/accounts/logout/",
-    //             {},
-    //             { withCredentials: true }
-    //         );
-    //     } catch (error) {
-    //         console.log("Error logging out: ", error);
-    //     } finally {
-    //         setIsAuthenticated(false);
-    //         setUser(null);
-    //     }
-    // };
+    const logout = async () => {
+        try {
+            await axios.post(
+                "api/accounts/logout/",
+                {},
+                { withCredentials: true }
+            );
+        } catch (error) {
+            console.log("Error logging out: ", error);
+        } finally {
+            setIsAuthenticated(false);
+            setUser(null);
+        }
+    };
 
     const refreshAccessToken = async () => {
         console.log(document.cookie);
@@ -125,7 +125,7 @@ const AuthProvider = ({ children }) => {
                 isAuthenticated,
                 user,
                 login,
-                // logout,
+                logout,
                 loading,
                 checkAuthStatus,
             }}
