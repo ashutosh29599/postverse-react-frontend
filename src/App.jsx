@@ -9,6 +9,7 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 
 import Register from "./pages/RegisterPage";
 import Login from "./pages/LoginPage";
+import LandingPage from "./pages/LandingPage";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import MainLayout from "./layouts/MainLayout";
@@ -18,19 +19,19 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route element={<MainLayout />}>
-                <Route index element={<HomePage />} />
+                <Route index element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
             </Route>
-            <Route element={<NavbarLayout />}>
-                <Route
-                    path="/profile"
-                    element={
-                        <ProtectedRoute>
-                            <ProfilePage />
-                        </ProtectedRoute>
-                    }
-                />
+            <Route
+                element={
+                    <ProtectedRoute>
+                        <NavbarLayout />
+                    </ProtectedRoute>
+                }
+            >
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
             </Route>
         </>
     )
