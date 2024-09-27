@@ -14,7 +14,7 @@ const Post = ({ post }) => {
                 <div className="p-5">
                     <a href="#">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {post.username}
+                            {post.username}, {post.id}
                         </h5>
                     </a>
                     <small>{post.created_at}</small>

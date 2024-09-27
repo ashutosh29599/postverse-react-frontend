@@ -25,7 +25,7 @@ const Login = () => {
         try {
             await login(loginFormData.username, loginFormData.password);
 
-            return navigate("/profile");
+            return navigate("/home");
         } catch (error) {
             console.log(error);
             toast.error("Error logging in. Please try again later.");
