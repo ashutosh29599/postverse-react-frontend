@@ -53,7 +53,7 @@ const HomePage = () => {
 
     return (
         <div className="flex flex-col gap-3 flex-1 items-center">
-            {posts.length}
+            <p>Posts available: {posts.length}</p>
             {posts.length > 0 ? (
                 posts.map((post) => <Post key={post.id} post={post} />)
             ) : (

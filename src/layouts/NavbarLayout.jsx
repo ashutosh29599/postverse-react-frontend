@@ -4,7 +4,7 @@ import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const NavbarLayout = () => {
-    const { logout } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -41,9 +41,11 @@ const NavbarLayout = () => {
                             Flowbite
                         </span>
                     </a> */}
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                        <h1>PostVerse</h1>
-                    </span>
+                    <Link to={"/home"}>
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                            <h1>PostVerse</h1>
+                        </span>
+                    </Link>
                     {/* <button
                         data-collapse-toggle="navbar-default"
                         type="button"
@@ -84,11 +86,11 @@ const NavbarLayout = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to={"/profile"}
+                                    to={`/profile/${user}`}
                                     // className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                                     className={currentPageHighlight}
                                 >
-                                    Profile
+                                    Profile ({user})
                                 </NavLink>
                             </li>
 

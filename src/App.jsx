@@ -31,7 +31,7 @@ const router = createBrowserRouter(
                 }
             >
                 <Route path="/home" element={<HomePage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile/:username" element={<ProfilePage />} />
             </Route>
         </>
     )

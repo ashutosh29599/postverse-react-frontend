@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
     return (
@@ -12,11 +13,11 @@ const Post = ({ post }) => {
                     />=
                 </a> */}
                 <div className="p-5">
-                    <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {post.username}, {post.id}
+                    <Link to={`/profile/${post.username}`}>
+                        <h5 className="text-center rounded-md mb-2 text-2xl bg-orange-300 font-bold tracking-tight text-gray-900 dark:text-white">
+                            {post.username}
                         </h5>
-                    </a>
+                    </Link>
                     <small>{post.created_at}</small>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {post.text}
