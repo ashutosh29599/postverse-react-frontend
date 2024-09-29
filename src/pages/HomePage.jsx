@@ -22,7 +22,7 @@ const HomePage = () => {
 
             const newPosts = response.data.results.filter(
                 (newPosts) => !posts.some((post) => post.id === newPosts.id)
-            )
+            );
 
             setPosts((prevPosts) => [...prevPosts, ...newPosts]);
             setNextPageURL(response.data.next);
@@ -54,6 +54,14 @@ const HomePage = () => {
     return (
         <div className="flex flex-col gap-3 flex-1 items-center">
             <p>Posts available: {posts.length}</p>
+            <div>
+                <button
+                    type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                    Create Post
+                </button>
+            </div>
             {posts.length > 0 ? (
                 posts.map((post) => <Post key={post.id} post={post} />)
             ) : (

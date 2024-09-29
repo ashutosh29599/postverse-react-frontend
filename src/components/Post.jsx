@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
+
+// import { MdDeleteForever, MdEdit } from "react-icons/md";
 
 const Post = ({ post }) => {
     return (
         <>
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+                {/* dark:bg-gray-800 dark:border-gray-700 for dark mode? add to className above */}
                 {/* <a href="#">
                     <img
                         className="rounded-t-lg"
@@ -12,12 +16,23 @@ const Post = ({ post }) => {
                         alt=""
                     />=
                 </a> */}
-                <div className="p-5">
+                <div className="p-5 flex flex-col">
                     <Link to={`/profile/${post.username}`}>
                         <h5 className="text-center rounded-md mb-2 text-2xl bg-orange-300 font-bold tracking-tight text-gray-900 dark:text-white">
                             {post.username}
                         </h5>
                     </Link>
+                    <div className=" self-end">
+                        <button>
+                            <FaEdit size={20} />
+                            {/* <MdEdit size={20} /> */}
+                        </button>
+                        <button>
+                            <FaTrash size={20} color="red" />
+                            {/* <MdDeleteForever size={20} /> */}
+                        </button>
+                    </div>
+
                     <small>{post.created_at}</small>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {post.text}
