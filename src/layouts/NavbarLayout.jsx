@@ -21,7 +21,7 @@ const NavbarLayout = () => {
     const currentPageHighlight = ({ isActive }) =>
         isActive
             ? "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-            : "block py-2 px-3 text-white rounded md:p-0 hover:bg-gray-100 hover:text-blue-700 ";
+            : "block py-2 px-3 text-black rounded md:p-0 hover:bg-gray-100 dark:text-white hover:text-blue-700 ";
 
     return (
         <>
