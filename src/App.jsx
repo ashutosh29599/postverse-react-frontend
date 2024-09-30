@@ -8,14 +8,19 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import UnprotectedRoute from "./utils/UnprotectedRoute";
 
-import Register from "./pages/RegisterPage";
-import Login from "./pages/LoginPage";
+import LandingPageLayout from "./layouts/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
+
+// Authentication 
+import Register from "./pages/Auth/RegisterPage";
+import Login from "./pages/Auth/LoginPage";
+
+// Protected Pages
+import NavbarLayout from "./layouts/NavbarLayout";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
-import LandingPageLayout from "./layouts/LandingPageLayout";
-import NavbarLayout from "./layouts/NavbarLayout";
 
+// Posts
 import CreatePostPage from "./pages/Posts/CreatePostPage";
 import EditPostPage from "./pages/Posts/EditPostPage";
 import ConfirmDeletePostPage from "./pages/Posts/ConfirmDeletePostPage";

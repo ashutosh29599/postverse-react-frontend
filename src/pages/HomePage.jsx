@@ -27,7 +27,7 @@ const HomePage = () => {
                 (newPosts) => !posts.some((post) => post.id === newPosts.id)
             );
 
-            setPosts((prevPosts) => [...prevPosts, ...newPosts]);
+            setPosts((prevPosts) => [...newPosts, ...prevPosts]);
             setNextPageURL(response.data.next);
             // console.log(response.data);
             // console.log(response.data.results[0]);
@@ -52,7 +52,9 @@ const HomePage = () => {
     };
 
     const refreshPosts = () => {
-        console.log("clicked on refresh...");
+        // setPosts([]);
+        setLoading(true);
+        fetchPosts();
     };
 
     if (loading && posts.length === 0) {
