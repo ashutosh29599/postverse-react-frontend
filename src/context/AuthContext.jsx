@@ -1,6 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import axios from "axios";
-import { toast } from "react-toastify";
+
 
 const AuthContext = createContext();
 
@@ -34,7 +34,7 @@ const AuthProvider = ({ children }) => {
 
     const checkAuthStatus = async () => {
         try {
-            const response = await axios.get("api/accounts/check-auth/", {
+            const response = await axios.get("/api/accounts/check-auth/", {
                 withCredentials: true,
             });
             // console.log("Auth status response:", response);
@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
     const login = async (username, password) => {
         try {
             await axios.post(
-                "api/accounts/login/",
+                "/api/accounts/login/",
                 { username, password },
                 { withCredentials: true }
             );
@@ -76,7 +76,7 @@ const AuthProvider = ({ children }) => {
     const logout = async () => {
         try {
             await axios.post(
-                "api/accounts/logout/",
+                "/api/accounts/logout/",
                 {},
                 { withCredentials: true }
             );
@@ -92,7 +92,7 @@ const AuthProvider = ({ children }) => {
         console.log(document.cookie);
         try {
             const response = await axios.post(
-                "api/accounts/token/refresh/",
+                "/api/accounts/token/refresh/",
                 {},
                 { withCredentials: true }
             );

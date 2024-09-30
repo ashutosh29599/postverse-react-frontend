@@ -16,6 +16,9 @@ import ProfilePage from "./pages/ProfilePage";
 import LandingPageLayout from "./layouts/LandingPageLayout";
 import NavbarLayout from "./layouts/NavbarLayout";
 
+import CreatePostPage from "./pages/Posts/CreatePostPage";
+import EditPostPage from "./pages/Posts/EditPostPage";
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -39,6 +42,8 @@ const router = createBrowserRouter(
             >
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/profile/:username" element={<ProfilePage />} />
+                <Route path="/create-post" element={<CreatePostPage />} />
+                <Route path="/edit-post/:post" element={<EditPostPage />} />
             </Route>
         </>
     )

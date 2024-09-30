@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import Post from "../components/post";
+import Post from "../components/Post";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 // TODO: add pagination to fetchPosts.
 
@@ -12,9 +13,9 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
 
-    const fetchPosts = async (url = "api/posts") => {
+    const fetchPosts = async (url = "/api/posts") => {
         try {
-            if (url != "api/posts") {
+            if (url != "/api/posts") {
                 setLoadingMore(true);
             }
 
@@ -26,9 +27,10 @@ const HomePage = () => {
 
             setPosts((prevPosts) => [...prevPosts, ...newPosts]);
             setNextPageURL(response.data.next);
-            console.log(response.data);
-            console.log(response.data.results[0]);
+            // console.log(response.data);
+            // console.log(response.data.results[0]);
         } catch (error) {
+            toast.error("Unable to fetch posts. Please try again later.");
             console.log("Error fetching posts:", error);
         } finally {
             setLoading(false);
@@ -55,12 +57,14 @@ const HomePage = () => {
         <div className="flex flex-col gap-3 flex-1 items-center">
             <p>Posts available: {posts.length}</p>
             <div>
-                <button
-                    type="button"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                    Create Post
-                </button>
+                <Link to={"/create-post"}>
+                    <button
+                        type="button"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                        Create Post
+                    </button>
+                </Link>
             </div>
             {posts.length > 0 ? (
                 posts.map((post) => <Post key={post.id} post={post} />)
