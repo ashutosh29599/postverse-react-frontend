@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
-import AuthContext from "../context/AuthContext";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 
 const ProfilePage = () => {
-    // const { user } = useContext(AuthContext);
-    const { username } = useParams();
+    const { user } = useContext(AuthContext); // user that is logged in
+    const { username } = useParams(); // owner of the profile
 
     const [profile, setProfile] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -14,12 +14,12 @@ const ProfilePage = () => {
     const fetchUserProfile = async () => {
         try {
             // const response = await axios.get(`/api/profiles/profile/${user}`)
-            console.log(username);
+            // console.log(username);
             const response = await axios.get(
                 `/api/profiles/profile/${username}`
             );
             setProfile(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
             console.log("Error fetching user profile: ", error);
         } finally {
@@ -50,6 +50,19 @@ const ProfilePage = () => {
                     src={profile.photo}
                     alt="{profile.first_name}'s Profile Photo"
                 />
+            )}
+            {username == user && (
+                <Link
+                    to={`/edit-profile/`}
+                    state={{ profile: profile }}
+                >
+                    <button
+                        type="button"
+                        className="mt-5 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+                    >
+                        Edit Profile
+                    </button>
+                </Link>
             )}
         </div>
     );

@@ -11,14 +11,17 @@ import UnprotectedRoute from "./utils/UnprotectedRoute";
 import LandingPageLayout from "./layouts/LandingPageLayout";
 import LandingPage from "./pages/LandingPage";
 
-// Authentication 
+// Authentication
 import Register from "./pages/Auth/RegisterPage";
 import Login from "./pages/Auth/LoginPage";
 
 // Protected Pages
 import NavbarLayout from "./layouts/NavbarLayout";
 import HomePage from "./pages/HomePage";
-import ProfilePage from "./pages/ProfilePage";
+
+// Profile
+import ProfilePage from "./pages/Profiles/ProfilePage";
+import EditProfilePage from "./pages/Profiles/EditProfilePage";
 
 // Posts
 import CreatePostPage from "./pages/Posts/CreatePostPage";
@@ -47,10 +50,19 @@ const router = createBrowserRouter(
                 }
             >
                 <Route path="/home" element={<HomePage />} />
+                // profiles
                 <Route path="/profile/:username" element={<ProfilePage />} />
+                <Route
+                    path="/edit-profile/"
+                    element={<EditProfilePage />}
+                />
+                // posts
                 <Route path="/create-post" element={<CreatePostPage />} />
                 <Route path="/edit-post/:post" element={<EditPostPage />} />
-                <Route path="/delete-post/:post" element={<ConfirmDeletePostPage />} />
+                <Route
+                    path="/delete-post/:post"
+                    element={<ConfirmDeletePostPage />}
+                />
             </Route>
         </>
     )
