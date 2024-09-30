@@ -7,7 +7,7 @@ import AuthContext from "../context/AuthContext";
 // import { MdDeleteForever, MdEdit } from "react-icons/md";
 
 const Post = ({ post }) => {
-    const {user} = useContext(AuthContext);    
+    const { user } = useContext(AuthContext);
 
     return (
         <>
@@ -26,23 +26,26 @@ const Post = ({ post }) => {
                             {post.username}
                         </h5>
                     </Link>
-                    
-                    {user && post.username == user && <div className=" self-end">
-                        <Link to={`/edit-post/${post.id}`}>
-                            <button>
-                                <FaEdit size={20} />
-                                {/* <MdEdit size={20} /> */}
-                            </button>
-                        </Link>
-                        <button>
-                            <FaTrash size={20} color="red" />
-                            {/* <MdDeleteForever size={20} /> */}
-                        </button>
-                    </div>}
-                    
+
+                    {user && post.username == user && (
+                        <div className=" self-end">
+                            <Link to={`/edit-post/${post.id}`}>
+                                <button>
+                                    <FaEdit size={20} />
+                                </button>
+                            </Link>
+                            <Link to={`/delete-post/${post.id}`}>
+                                <button>
+                                    <FaTrash size={20} color="red" />
+                                </button>
+                            </Link>
+                        </div>
+                    )}
 
                     <small>{post.created_at}</small>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                    <small>Post id {post.id}</small>
+
+                    <p className="mt-3 mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {post.text}
                     </p>
                     <img src={post.photo} alt="" />

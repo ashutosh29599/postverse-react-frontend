@@ -18,6 +18,7 @@ import NavbarLayout from "./layouts/NavbarLayout";
 
 import CreatePostPage from "./pages/Posts/CreatePostPage";
 import EditPostPage from "./pages/Posts/EditPostPage";
+import ConfirmDeletePostPage from "./pages/Posts/ConfirmDeletePostPage";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -44,6 +45,7 @@ const router = createBrowserRouter(
                 <Route path="/profile/:username" element={<ProfilePage />} />
                 <Route path="/create-post" element={<CreatePostPage />} />
                 <Route path="/edit-post/:post" element={<EditPostPage />} />
+                <Route path="/delete-post/:post" element={<ConfirmDeletePostPage />} />
             </Route>
         </>
     )

@@ -37,7 +37,8 @@ const PostForm = ({ title, post_form_method }) => {
             if (photo) {
                 formData.append("photo", photo);
             }
-
+            
+            //TODO: Refactor the following.
             if (post_form_method == "create_post") {
                 await axios.post(`/api/posts/`, formData, {
                     headers: {
