@@ -8,7 +8,7 @@ import AuthContext from "../../context/AuthContext";
 
 const Post = ({ post }) => {
     const { user } = useContext(AuthContext);
-
+    
     return (
         <>
             <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
@@ -21,11 +21,14 @@ const Post = ({ post }) => {
                     />=
                 </a> */}
                 <div className="p-5 flex flex-col">
+                    <div className="flex flex-row justify-center rounded-lg bg-purple-300">
+                    
                     <Link to={`/profile/${post.username}`}>
-                        <h5 className="text-center rounded-md mb-2 text-2xl bg-orange-300 font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="text-center rounded-md mb-2 text-2xl  font-bold tracking-tight text-gray-900 dark:text-white">
                             {post.username}
                         </h5>
                     </Link>
+                    </div>
 
                     {user && post.username == user && (
                         <div className=" self-end">
