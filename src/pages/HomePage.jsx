@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import Post from "../components/Post";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-
 import { FaArrowsRotate } from "react-icons/fa6";
+
+import Post from "../components/Post/Post";
 
 // TODO: add pagination to fetchPosts.
 

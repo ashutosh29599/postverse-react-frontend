@@ -2,7 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useRef, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PostForm = ({ title, post_form_method }) => {

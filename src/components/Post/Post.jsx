@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/AuthContext";
 
 // import { MdDeleteForever, MdEdit } from "react-icons/md";
 
