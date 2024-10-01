@@ -127,7 +127,7 @@ const PostForm = ({ title, post_form_method }) => {
                 <button
                     type="button"
                     onClick={handleReset}
-                    className="ms-2 focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900"
+                    className="ms-2 text-slate-700 hover:text-white border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-300 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-400 dark:focus:ring-slate-900"
                 >
                     Reset
                 </button>
