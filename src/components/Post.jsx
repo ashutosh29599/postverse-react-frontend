@@ -29,7 +29,10 @@ const Post = ({ post }) => {
 
                     {user && post.username == user && (
                         <div className=" self-end">
-                            <Link to={`/edit-post/${post.id}`}>
+                            <Link
+                                to={`/edit-post/${post.id}`}
+                                state={{ post: post }}
+                            >
                                 <button>
                                     <FaEdit size={20} />
                                 </button>

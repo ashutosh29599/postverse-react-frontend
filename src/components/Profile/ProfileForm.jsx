@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { ImGift } from "react-icons/im";
 
 const ProfileForm = ({ profile }) => {
     const { user } = useContext(AuthContext);
@@ -16,6 +15,7 @@ const ProfileForm = ({ profile }) => {
     });
     const [photo, setPhoto] = useState(null);
     const [photoPreview, setPhotoPreview] = useState(profile.photo || null);
+    const fileInputRef = useRef(null);
 
     const handleReset = () => {
         setProfileFormData({
@@ -25,6 +25,10 @@ const ProfileForm = ({ profile }) => {
         });
         setPhoto(null);
         setPhotoPreview(profile.photo || null);
+
+        if (fileInputRef.current) {
+            fileInputRef.current.value = ""
+        }
     };
 
     const handleTextChange = (e) => {
@@ -37,9 +41,8 @@ const ProfileForm = ({ profile }) => {
     const handlePhotoChange = (e) => {
         if (e.target.files && e.target.files[0]) {
             setPhoto(e.target.files[0]);
+            setPhotoPreview(URL.createObjectURL(e.target.files[0]));
         }
-        setPhoto(e.target.files[0]);
-        setPhotoPreview(URL.createObjectURL(e.target.files[0]));
     };
 
     const handleSubmit = async (e) => {
@@ -159,6 +162,7 @@ const ProfileForm = ({ profile }) => {
                     id="photo"
                     className="block py-2.5 px-0 w-full text-md text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     onChange={handlePhotoChange}
+                    ref={fileInputRef}
                 />
                 <label
                     htmlFor="photo"
@@ -184,7 +188,7 @@ const ProfileForm = ({ profile }) => {
                 />
             </div> */}
 
-            <div className="mt-3 flex flex-row gap-3">
+            <div className="mt-3 flex flex-row justify-center gap-3">
                 <button
                     type="submit"
                     className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
