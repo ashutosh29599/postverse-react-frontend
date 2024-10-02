@@ -13,13 +13,12 @@ const ProfilePage = () => {
 
     const fetchUserProfile = async () => {
         try {
-            // const response = await axios.get(`/api/profiles/profile/${user}`)
-            // console.log(username);
             const response = await axios.get(
                 `/api/profiles/profile/${username}`
             );
             setProfile(response.data);
-            // console.log(response.data);
+            console.log(response.data);
+            console.log(user);
         } catch (error) {
             console.log("Error fetching user profile: ", error);
         } finally {
@@ -42,7 +41,7 @@ const ProfilePage = () => {
                 Profile Page
             </div>
 
-            <h2 className="">@{username}</h2>
+            <h2>@{username}</h2>
             {profile.first_name && <h3>{profile.first_name}</h3>}
             {profile.last_name && <h3>{profile.last_name}</h3>}
             {profile.bio && <h3>{profile.bio}</h3>}

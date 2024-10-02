@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ToastContainer } from "react-toastify";
 import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { Dropdown, DropdownItem } from "flowbite-react";
 
 const NavbarLayout = () => {
     const { user, logout } = useContext(AuthContext);
@@ -85,6 +86,36 @@ const NavbarLayout = () => {
                                 </NavLink>
                             </li>
                             <li>
+                                <Dropdown label={user} inline>
+                                    <DropdownItem>
+                                        <NavLink
+                                            to={`/profile/${user}`}
+                                            // className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                                            className={currentPageHighlight}
+                                        >
+                                            Profile
+                                        </NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <NavLink
+                                            to={"/settings"}
+                                            className={currentPageHighlight}
+                                        >
+                                            Settings
+                                        </NavLink>
+                                    </DropdownItem>
+                                    <DropdownItem>
+                                        <button
+                                            onClick={handleLogout}
+                                            className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                        >
+                                            Logout
+                                        </button>
+                                    </DropdownItem>
+                                </Dropdown>
+                            </li>
+
+                            {/* <li>
                                 <NavLink
                                     to={`/profile/${user}`}
                                     // className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
@@ -101,7 +132,7 @@ const NavbarLayout = () => {
                                 >
                                     Logout
                                 </button>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

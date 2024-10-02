@@ -27,7 +27,7 @@ const ProfileForm = ({ profile }) => {
         setPhotoPreview(profile.photo || null);
 
         if (fileInputRef.current) {
-            fileInputRef.current.value = ""
+            fileInputRef.current.value = "";
         }
     };
 
@@ -69,7 +69,7 @@ const ProfileForm = ({ profile }) => {
                     withCredentials: true,
                 }
             );
-            toast.success("Profile updated!")
+            toast.success("Profile updated!");
         } catch (error) {
             toast.error("Failed to update profile. Please try again later.");
             console.log("Failed to update profile, ", error);
@@ -82,6 +82,7 @@ const ProfileForm = ({ profile }) => {
             <div className="my-5 font-bold text-4xl flex justify-center">
                 Edit Profile
             </div>
+
             <div className="relative z-0 w-full mb-5 group">
                 <input
                     type="text"

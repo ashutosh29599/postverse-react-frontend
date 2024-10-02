@@ -23,10 +23,13 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/Profiles/ProfilePage";
 import EditProfilePage from "./pages/Profiles/EditProfilePage";
 
+import SettingsPage from "./pages/Settings/SettingsPage";
+
 // Posts
 import CreatePostPage from "./pages/Posts/CreatePostPage";
 import EditPostPage from "./pages/Posts/EditPostPage";
 import ConfirmDeletePostPage from "./pages/Posts/ConfirmDeletePostPage";
+
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -50,12 +53,16 @@ const router = createBrowserRouter(
                 }
             >
                 <Route path="/home" element={<HomePage />} />
+                
                 // profiles
                 <Route path="/profile/:username" element={<ProfilePage />} />
                 <Route
                     path="/edit-profile/"
                     element={<EditProfilePage />}
                 />
+
+                <Route path="/settings" element={<SettingsPage />} />
+
                 // posts
                 <Route path="/create-post" element={<CreatePostPage />} />
                 <Route path="/edit-post/:post" element={<EditPostPage />} />
