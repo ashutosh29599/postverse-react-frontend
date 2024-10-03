@@ -9,7 +9,7 @@ const SettingsPage = () => {
         // </div>
 
         <div className="flex justify-center items-center mt-8">
-            <div className="flex justify-center w-1/4 border border-2 border-slate-200 rounded-lg shadow-lg">
+            <div className="flex justify-center w-2/5 border border-2 border-slate-200 rounded-lg shadow-lg">
                 <div className="flex flex-col justify-center">
                     <div className="font-bold text-4xl my-6">Settings Page</div>
                     <div className="flex flex-col justify-center items-center mb-5">

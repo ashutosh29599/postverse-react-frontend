@@ -38,21 +38,22 @@ const Post = ({ post }) => {
                                     <Dropdown inline label="">
                                         <DropdownItem>
                                             <Link
-                                                to={`/edit-post/${post.id}`}
+                                                to={`/edit-post/`}
                                                 state={{ post: post }}
                                             >
-                                                <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                                                     Edit
-                                                </button>
+                                                </div>
                                             </Link>
                                         </DropdownItem>
                                         <DropdownItem>
                                             <Link
-                                                to={`/delete-post/${post.id}`}
+                                                to={`/delete-post/`}
+                                                state={{ post: post }}
                                             >
-                                                <button className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                <div className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600 dark:hover:text-white">
                                                     Delete
-                                                </button>
+                                                </div>
                                             </Link>
                                         </DropdownItem>
                                     </Dropdown>

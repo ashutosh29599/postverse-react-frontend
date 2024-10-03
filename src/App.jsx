@@ -65,9 +65,9 @@ const router = createBrowserRouter(
 
                 // posts
                 <Route path="/create-post" element={<CreatePostPage />} />
-                <Route path="/edit-post/:post" element={<EditPostPage />} />
+                <Route path="/edit-post/" element={<EditPostPage />} />
                 <Route
-                    path="/delete-post/:post"
+                    path="/delete-post/"
                     element={<ConfirmDeletePostPage />}
                 />
             </Route>

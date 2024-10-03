@@ -1,15 +1,16 @@
 import axios from "axios";
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ConfirmDeletePostPage = () => {
-    const post = useParams();
+    const post = useLocation().state.post; // gets from Post.jsx
+    // const post = useParams();
     const navigate = useNavigate();
 
     const deletePost = async () => {
         try {
-            await axios.delete(`/api/posts/${post.post}/`, {
+            await axios.delete(`/api/posts/${post.id}/`, {
                 withCredentials: true,
             });
             toast.success("Successfully deleted your post.");

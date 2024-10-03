@@ -5,8 +5,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PostForm = ({ title, post_form_method }) => {
-    const post = useLocation().state?.post;
-    // console.log(post)
+    const post = useLocation().state?.post; // gets from Post.jsx
+
     const [postText, setPostText] = useState({
         text: post?.text || "",
     });
