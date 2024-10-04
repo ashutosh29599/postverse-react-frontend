@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useContext } from "react";
-import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import ProfileContext from "../../context/ProfileContext";
+
+import { Spinner } from "flowbite-react";
 
 const ProfilePage = () => {
     const { user } = useContext(AuthContext); // user that is logged in
     const { loading, profile } = useContext(ProfileContext);
     const { username } = useParams(); // owner of the profile
 
-    // TODO: Fix all placeholder loading
     if (loading) {
-        return <p>Loading...</p>;
+        <div className="flex flex-wrap items-center gap-2">
+            <Spinner
+                aria-label="Extra large spinner example"
+                size="xl"
+                color="purple"
+            />
+        </div>;
     }
 
     return (
