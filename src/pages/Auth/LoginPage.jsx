@@ -23,6 +23,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
+            console.log("trying to log in....")
             await login(loginFormData.username, loginFormData.password);
 
             return navigate("/home");

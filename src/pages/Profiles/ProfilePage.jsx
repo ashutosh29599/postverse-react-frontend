@@ -3,32 +3,12 @@ import { useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 
 const ProfilePage = () => {
     const { user } = useContext(AuthContext); // user that is logged in
+    const { loading, profile } = useContext(ProfileContext);
     const { username } = useParams(); // owner of the profile
-
-    const [profile, setProfile] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const fetchUserProfile = async () => {
-        try {
-            const response = await axios.get(
-                `/api/profiles/profile/${username}`
-            );
-            setProfile(response.data);
-            console.log(response.data);
-            console.log(user);
-        } catch (error) {
-            console.log("Error fetching user profile: ", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchUserProfile();
-    }, [username]);
 
     // TODO: Fix all placeholder loading
     if (loading) {

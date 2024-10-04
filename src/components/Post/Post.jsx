@@ -4,7 +4,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 import { Card, Dropdown, DropdownItem } from "flowbite-react";
 
-import AuthContext from "../../context/AuthContext";
+import AuthContext, { AuthProvider } from "../../context/AuthContext";
 
 // import { MdDeleteForever, MdEdit } from "react-icons/md";
 

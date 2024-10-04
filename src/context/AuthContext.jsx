@@ -1,7 +1,6 @@
 import { createContext, useState } from "react";
 import axios from "axios";
 
-
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -29,6 +28,7 @@ const AuthProvider = ({ children }) => {
 
     const csrftoken = getCookie("csrftoken");
 
+    // TODO: REMOVE the httponly cookies etc when the user logs out. 
     axios.defaults.withCredentials = true; // Ensures credentials (cookies) are sent with requests
     axios.defaults.headers.common["X-CSRFToken"] = csrftoken; // Set the CSRF token for every request
 
@@ -64,11 +64,12 @@ const AuthProvider = ({ children }) => {
             await axios.post(
                 "/api/accounts/login/",
                 { username, password },
-                { withCredentials: true }
+                // { withCredentials: true }
             );
             setIsAuthenticated(true);
             setUser(username);
         } catch (error) {
+            console.log("failed to login, error, ", error);
             throw error;
         }
     };

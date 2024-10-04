@@ -5,6 +5,8 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
+import { ProfileProvider } from "./context/ProfileContext";
+
 import ProtectedRoute from "./utils/ProtectedRoute";
 import UnprotectedRoute from "./utils/UnprotectedRoute";
 
@@ -78,7 +80,9 @@ const router = createBrowserRouter(
 const App = () => {
     return (
         <AuthProvider>
+            <ProfileProvider>
             <RouterProvider router={router} />{" "}
+            </ProfileProvider>
         </AuthProvider>
     );
 };
