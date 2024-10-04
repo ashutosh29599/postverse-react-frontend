@@ -69,8 +69,8 @@ const HomePage = () => {
     }
 
     return (
-        <div className="flex flex-col gap-3 flex-1 items-center">
-            <p>Posts available: {posts.length}</p>
+        <div className="flex flex-col gap-3 flex-1 items-center dark:bg-gray-900">
+            <p className="dark:text-white">Posts available: {posts.length}</p>
             <div className="flex flex-row">
                 <Link to={"/create-post"}>
                     <button

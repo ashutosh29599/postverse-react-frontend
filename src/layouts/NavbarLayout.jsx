@@ -4,6 +4,8 @@ import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { Dropdown, DropdownItem } from "flowbite-react";
 
+import { DarkThemeToggle, Flowbite } from "flowbite-react";
+
 const NavbarLayout = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
@@ -22,10 +24,10 @@ const NavbarLayout = () => {
     const currentPageHighlight = ({ isActive }) =>
         isActive
             ? "block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-            : "block py-2 px-3 text-black rounded md:p-0 hover:bg-gray-100 dark:text-white hover:text-blue-700 ";
+            : "block py-2 px-3 text-black rounded md:p-0 hover:bg-gray-100 dark:text-gray-400 hover:text-blue-700 ";
 
     return (
-        <>
+        <Flowbite>
             {/* Source: https://flowbite.com/docs/components/navbar/#navbar-with-search  */}
             <nav className="bg-white border-gray-200 dark:bg-gray-900">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -75,7 +77,7 @@ const NavbarLayout = () => {
                         className="hidden w-full md:block md:w-auto"
                         id="navbar-default"
                     >
-                        <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <ul className="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                             <li>
                                 <NavLink
                                     to={"/home"}
@@ -85,7 +87,7 @@ const NavbarLayout = () => {
                                     Home
                                 </NavLink>
                             </li>
-                            <li>
+                            <li className="dark:text-gray-400">
                                 <Dropdown label={user} inline>
                                     <DropdownItem>
                                         <NavLink
@@ -121,6 +123,9 @@ const NavbarLayout = () => {
                                     </DropdownItem> */}
                                 </Dropdown>
                             </li>
+                            <li>
+                            <DarkThemeToggle />
+                            </li>
 
                             {/* <li>
                                 <NavLink
@@ -144,10 +149,9 @@ const NavbarLayout = () => {
                     </div>
                 </div>
             </nav>
-
             <Outlet />
             <ToastContainer />
-        </>
+        </Flowbite>
     );
 };
 

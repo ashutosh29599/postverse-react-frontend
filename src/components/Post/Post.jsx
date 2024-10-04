@@ -13,7 +13,7 @@ const Post = ({ post }) => {
 
     return (
         <>
-            <div className="min-w-96 max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+            <div className="min-w-96 max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 {/* dark:bg-gray-800 dark:border-gray-700 for dark mode? add to className above */}
                 {/* <a href="#">
                     <img
@@ -23,12 +23,12 @@ const Post = ({ post }) => {
                     />=
                 </a> */}
                 <div className="p-5 flex flex-col">
-                    <div className="relative flex items-center rounded-lg bg-purple-300 p-4">
+                    <div className="relative flex items-center rounded-lg bg-purple-300 p-4 dark:bg-slate-500">
                         <Link
                             to={`/profile/${post.username}`}
                             className="flex-1"
                         >
-                            <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h5 className="text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-900">
                                 {post.username}
                             </h5>
                         </Link>
@@ -80,8 +80,10 @@ const Post = ({ post }) => {
                         </div>
                     )} */}
 
-                    <small>{post.created_at}</small>
-                    <small>Post id {post.id}</small>
+                    <div className="mt-2 flex flex-col font-normal text-gray-700 dark:text-gray-600">
+                        <small>{post.created_at}</small>
+                        <small>Post id {post.id}</small>
+                    </div>
 
                     <p className="mt-3 mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {post.text}
