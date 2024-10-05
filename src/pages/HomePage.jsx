@@ -3,7 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaArrowsRotate } from "react-icons/fa6";
-import { Spinner } from "flowbite-react";
+// import { Spinner } from "flowbite-react";
+import LoadingComponent from "../components/Loading/LoadingComponent";
 
 import Post from "../components/Post/Post";
 
@@ -59,13 +60,14 @@ const HomePage = () => {
 
     if (loading && posts.length === 0) {
         // return <p>Loading...</p>;
-        <div className="flex flex-wrap items-center gap-2">
-            <Spinner
-                aria-label="Extra large spinner example"
-                size="xl"
-                color="purple"
-            />
-        </div>;
+        return <LoadingComponent />;
+        // <div className="flex flex-wrap items-center gap-2">
+        //     <Spinner
+        //         aria-label="Extra large spinner example"
+        //         size="xl"
+        //         color="purple"
+        //     />
+        // </div>;
     }
 
     return (

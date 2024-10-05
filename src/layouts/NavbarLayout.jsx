@@ -109,7 +109,7 @@ const NavbarLayout = () => {
                                     <DropdownItem
                                         onClick={handleLogout}
                                         // className={currentPageHighlight}
-                                        className="text-gray-900 hover:bg-gray-100  md:hover:text-red-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                        className="text-gray-900 hover:bg-gray-100 md:hover:text-red-700 dark:text-white md:dark:hover:text-red-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                                     >
                                         Logout 
                                     </DropdownItem>

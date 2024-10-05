@@ -38,13 +38,13 @@ const PostForm = ({ title, post_form_method }) => {
         setPhotoPreview(post?.photo || null);
 
         if (fileInputRef.current) {
-            fileInputRef.current.value = ""
+            fileInputRef.current.value = "";
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const formData = new FormData();
             if (postText.text) {
@@ -54,7 +54,7 @@ const PostForm = ({ title, post_form_method }) => {
                 formData.append("photo", photo);
             }
 
-            console.log(formData)
+            console.log(formData);
 
             //TODO: Refactor the following.
             if (post_form_method == "create_post") {
@@ -91,88 +91,101 @@ const PostForm = ({ title, post_form_method }) => {
         navigate("/home");
     };
 
-
-
     return (
-        <form className="max-w-sm mx-auto mt-5" onSubmit={handleSubmit}>
-            <h1 className="font-bold text-3xl text-center mb-5">{title}</h1>
-            <div className="mb-5">
-                <label
-                    htmlFor="text"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                    Post Text
-                </label>
-                <textarea
-                    type="text"
-                    name="text"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Your post text..."
-                    value={postText.text}
-                    onChange={handleTextChange}
-                />
-            </div>
-            <div>
-                {photoPreview && (
-                    <div className="relative z-0 w-full mb-5 group">
-                        <img
-                            src={photoPreview}
-                            alt="photo preview"
-                            className="w-64 object-cover mx-auto"
-                        />
-                    </div>
-                )}
-            </div>
+        <div className="h-screen dark:bg-gray-900">
+            <div className="flex justify-center items-center">
+                <div className="flex justify-center w-2/5 border border-2 border-slate-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-slate-500">
+                    <form className="my-4 max-w-sm mx-auto" onSubmit={handleSubmit}>
+                        {/* Title */}
+                        <h1 className="font-bold text-4xl text-center my-4 dark:text-slate-500">
+                            {title}
+                        </h1>
 
-            <div className="mb-3">
-                <label
-                    className="block  text-sm font-medium text-gray-900 dark:text-white"
-                    htmlFor="photo"
-                >
-                    Upload file
-                </label>
-                <input
-                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    aria-describedby=""
-                    id="photo"
-                    type="file"
-                    onChange={handlePhotoChange}
-                    ref={fileInputRef}
-                />
-                <div
-                    className="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                    id="photo_help"
-                >
-                    You may upload one image.
+                        {/* Post Text */}
+                        <div className="mb-5">
+                            <label
+                                htmlFor="text"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-500"
+                            >
+                                Post Text
+                            </label>
+                            <textarea
+                                type="text"
+                                name="text"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-slate-300 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Your post text..."
+                                value={postText.text}
+                                onChange={handleTextChange}
+                            />
+                        </div>
+
+                        {/* Photo Preview */}
+                        <div>
+                            {photoPreview && (
+                                <div className="relative z-0 w-full mb-5 group">
+                                    <img
+                                        src={photoPreview}
+                                        alt="photo preview"
+                                        className="w-64 object-cover mx-auto"
+                                    />
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Photo Input */}
+                        <div className="mb-3">
+                            <label
+                                className="block  text-sm font-medium text-gray-900 dark:text-slate-500"
+                                htmlFor="photo"
+                            >
+                                Upload file
+                            </label>
+                            <input
+                                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-slate-300 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                aria-describedby=""
+                                id="photo"
+                                type="file"
+                                onChange={handlePhotoChange}
+                                ref={fileInputRef}
+                            />
+                            <div
+                                className="mt-1 text-sm text-gray-500 dark:text-slate-500"
+                                id="photo_help"
+                            >
+                                You may upload one image.
+                            </div>
+                        </div>
+
+                        {/* Buttons */}
+                        <div>
+                            <button
+                                type="submit"
+                                className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                            >
+                                Post
+                            </button>
+
+                            <button
+                                type="button"
+                                onClick={handleReset}
+                                className="ms-2 text-slate-700 hover:text-white border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-300 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-400 dark:focus:ring-slate-900"
+                            >
+                                Reset
+                            </button>
+
+                            <Link to={"/home"}>
+                                <button
+                                    type="cancel"
+                                    className="ms-2 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                >
+                                    Cancel
+                                </button>
+                            </Link>
+                        </div>
+                    </form>
                 </div>
             </div>
-
-            <div className="mt-3">
-                <button
-                    type="submit"
-                    className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                >
-                    Post
-                </button>
-
-                <button
-                    type="button"
-                    onClick={handleReset}
-                    className="ms-2 text-slate-700 hover:text-white border border-slate-700 hover:bg-slate-800 focus:ring-4 focus:outline-none focus:ring-slate-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-300 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-400 dark:focus:ring-slate-900"
-                >
-                    Reset
-                </button>
-
-                <Link to={"/home"}>
-                    <button
-                        type="cancel"
-                        className="ms-2 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                    >
-                        Cancel
-                    </button>
-                </Link>
-            </div>
-        </form>
+        </div>
     );
 };
 

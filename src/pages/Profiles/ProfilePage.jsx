@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
@@ -7,9 +7,15 @@ import ProfileContext from "../../context/ProfileContext";
 import { Spinner } from "flowbite-react";
 
 const ProfilePage = () => {
-    const { user } = useContext(AuthContext); // user that is logged in
-    const { loading, profile } = useContext(ProfileContext);
+    const { isAuthenticated, user } = useContext(AuthContext); // user that is logged in
+    const { loading, profile, fetchProfile } = useContext(ProfileContext);
     const { username } = useParams(); // owner of the profile
+
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            fetchProfile();
+        }
+    }, [user, isAuthenticated]);
 
     if (loading) {
         <div className="flex flex-wrap items-center gap-2 dark:bg-slate-700">
@@ -26,7 +32,7 @@ const ProfilePage = () => {
             <div className="flex flex-col justify-center items-center">
                 <div className="my-5 flex justify-center w-2/5 border border-2 border-slate-200 rounded-lg shadow-lg dark:bg-gray-800 dark:border-slate-500">
                     <div className="flex flex-col justify-center my-3">
-                        <div className="flex justify-center font-bold text-4xl my-6 dark:text-slate-500">
+                        <div className="flex justify-center font-bold text-4xl my-4 dark:text-slate-500">
                             Profile Page
                         </div>
                         <div className="flex flex-col justify-center items-center mb-1">
@@ -35,7 +41,7 @@ const ProfilePage = () => {
                                     <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                         Username
                                     </label>
-                                    <div className="flex flex-row justify-center items-center gap-1 my-1 w-full text-slate-700 border border-slate-200 hover:bg-slate-100 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:bg-gray-900 dark:hover:text-slate-400">
+                                    <div className="flex flex-row justify-center items-center gap-1 my-2 w-full text-slate-700 border border-slate-200 hover:bg-slate-100 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:bg-gray-900 dark:hover:text-slate-400">
                                         @{username}
                                     </div>
                                 </div>
@@ -46,7 +52,7 @@ const ProfilePage = () => {
                                     <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                         Name
                                     </label>
-                                    <div className="flex flex-row justify-center items-center gap-1 my-1 w-full text-slate-700 border border-slate-200 hover:bg-slate-100 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:bg-gray-900 dark:hover:text-slate-400">
+                                    <div className="flex flex-row justify-center items-center gap-1 my-2 w-full text-slate-700 border border-slate-200 hover:bg-slate-100 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:bg-gray-900 dark:hover:text-slate-400">
                                         {profile.first_name && (
                                             <h3>{profile.first_name}</h3>
                                         )}
@@ -62,7 +68,7 @@ const ProfilePage = () => {
                                     <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                                         Bio
                                     </label>
-                                    <div className="flex flex-row justify-center items-center gap-1 my-1 w-full text-slate-700 border border-slate-200 hover:bg-slate-100 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:bg-gray-900 dark:hover:text-slate-400">
+                                    <div className="flex flex-row justify-center items-center gap-1 my-2 w-full text-slate-700 border border-slate-200 hover:bg-slate-100 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-500 dark:hover:bg-gray-900 dark:hover:text-slate-400">
                                         {profile.bio && <h3>{profile.bio}</h3>}
                                     </div>
                                 </div>
@@ -79,7 +85,7 @@ const ProfilePage = () => {
                     </div>
                 </div>
                 {username == user && (
-                    <div className="mt-3 mb-5">
+                    <div className="mt-2 mb-5">
                         <Link
                             to={`/edit-profile/`}
                             state={{ profile: profile }}

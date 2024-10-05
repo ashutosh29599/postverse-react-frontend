@@ -35,7 +35,7 @@ const ProfileProvider = ({ children }) => {
     }, [user, isAuthenticated]);
 
     return (
-        <ProfileContext.Provider value={{ profile: profile, loading }}>
+        <ProfileContext.Provider value={{ profile: profile, loading, fetchProfile }}>
             {children}
         </ProfileContext.Provider>
     );

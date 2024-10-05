@@ -1,6 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+
+import LoadingComponent from "../components/Loading/LoadingComponent";
 
 const ProtectedRoute = ({ children }) => {
     const { checkAuthStatus, isAuthenticated, loading } =
@@ -10,7 +12,9 @@ const ProtectedRoute = ({ children }) => {
     checkAuthStatus();
 
     if (loading) {
-        return <div>loading...</div>;
+        // return <div>loading...</div>;
+        return <LoadingComponent />;
+       
     }
 
     if (!isAuthenticated) {
