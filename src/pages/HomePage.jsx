@@ -59,15 +59,7 @@ const HomePage = () => {
     };
 
     if (loading && posts.length === 0) {
-        // return <p>Loading...</p>;
         return <LoadingComponent />;
-        // <div className="flex flex-wrap items-center gap-2">
-        //     <Spinner
-        //         aria-label="Extra large spinner example"
-        //         size="xl"
-        //         color="purple"
-        //     />
-        // </div>;
     }
 
     return (

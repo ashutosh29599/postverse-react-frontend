@@ -11,7 +11,6 @@ const UnprotectedRoute = ({ children }) => {
     checkAuthStatus();
 
     if (loading) {
-        // return <div>loading...</div>;
         return <LoadingComponent />;
     }
 

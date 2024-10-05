@@ -21,6 +21,9 @@ import Login from "./pages/Auth/LoginPage";
 import NavbarLayout from "./layouts/NavbarLayout";
 import HomePage from "./pages/HomePage";
 
+// protected Auth
+import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
+
 // Profile
 import ProfilePage from "./pages/Profiles/ProfilePage";
 import EditProfilePage from "./pages/Profiles/EditProfilePage";
@@ -55,6 +58,9 @@ const router = createBrowserRouter(
                 }
             >
                 <Route path="/home" element={<HomePage />} />
+
+                // protected Auth
+                <Route path="/change-password" element={<ChangePasswordPage />} />
                 
                 // profiles
                 <Route path="/profile/:username" element={<ProfilePage />} />
