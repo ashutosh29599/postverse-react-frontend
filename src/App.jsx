@@ -23,6 +23,7 @@ import HomePage from "./pages/HomePage";
 
 // protected Auth
 import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
+import DeleteAccountPage from "./pages/Auth/DeleteAccountPage";
 
 // Profile
 import ProfilePage from "./pages/Profiles/ProfilePage";
@@ -61,6 +62,7 @@ const router = createBrowserRouter(
 
                 // protected Auth
                 <Route path="/change-password" element={<ChangePasswordPage />} />
+                <Route path="/delete-account" element={<DeleteAccountPage />} />
                 
                 // profiles
                 <Route path="/profile/:username" element={<ProfilePage />} />

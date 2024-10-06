@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
 
     const csrftoken = getCookie("csrftoken");
 
-    // TODO: REMOVE the httponly cookies etc when the user logs out. 
+    // TODO: REMOVE the httponly cookies etc when the user logs out.
     axios.defaults.withCredentials = true; // Ensures credentials (cookies) are sent with requests
     axios.defaults.headers.common["X-CSRFToken"] = csrftoken; // Set the CSRF token for every request
 
@@ -61,11 +61,8 @@ const AuthProvider = ({ children }) => {
 
     const login = async (username, password) => {
         try {
-            await axios.post(
-                "/api/accounts/login/",
-                { username, password },
-                // { withCredentials: true }
-            );
+            logout();
+            await axios.post("/api/accounts/login/", { username, password });
             setIsAuthenticated(true);
             setUser(username);
         } catch (error) {

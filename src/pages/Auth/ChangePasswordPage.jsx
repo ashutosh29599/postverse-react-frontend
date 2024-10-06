@@ -37,7 +37,7 @@ const ChangePasswordPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(
+            await axios.put(
                 `/api/accounts/change-password/`,
                 changePasswordFormData
             );
@@ -45,7 +45,6 @@ const ChangePasswordPage = () => {
             toast.success("Successfully changed password.");
         } catch (error) {
             console.log("Error change password, ", error);
-            toast.error("Error changing password.");
         }
     };
 

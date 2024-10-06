@@ -30,13 +30,15 @@ const ConfirmDeletePostPage = () => {
             </div>
 
             {/* Confirmation Message */}
-            <p className="mt-2 dark:text-slate-500">
-                Are you sure you want to delete this post? This cannot be
-                undone.
-            </p>
+            <div className="flex justify-center px-4">
+                <p className="mt-2 text-lg font-semibold dark:text-slate-500">
+                    Are you sure you want to delete this post? This cannot be
+                    undone.
+                </p>
+            </div>
 
             {/* Buttons */}
-            <div className="mt-5 flex flex-row gap-2">
+            <div className="mt-4 flex flex-row gap-2">
                 <button
                     type="button"
                     className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
