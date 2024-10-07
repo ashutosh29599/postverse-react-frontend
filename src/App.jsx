@@ -36,7 +36,6 @@ import CreatePostPage from "./pages/Posts/CreatePostPage";
 import EditPostPage from "./pages/Posts/EditPostPage";
 import ConfirmDeletePostPage from "./pages/Posts/ConfirmDeletePostPage";
 
-
 const router = createBrowserRouter(
     createRoutesFromElements(
         <>
@@ -59,20 +58,19 @@ const router = createBrowserRouter(
                 }
             >
                 <Route path="/home" element={<HomePage />} />
-
+                
                 // protected Auth
-                <Route path="/change-password" element={<ChangePasswordPage />} />
+                <Route
+                    path="/change-password"
+                    element={<ChangePasswordPage />}
+                />
                 <Route path="/delete-account" element={<DeleteAccountPage />} />
                 
                 // profiles
                 <Route path="/profile/:username" element={<ProfilePage />} />
-                <Route
-                    path="/edit-profile/"
-                    element={<EditProfilePage />}
-                />
-
+                <Route path="/edit-profile/" element={<EditProfilePage />} />
                 <Route path="/settings" element={<SettingsPage />} />
-
+                
                 // posts
                 <Route path="/create-post" element={<CreatePostPage />} />
                 <Route path="/edit-post/" element={<EditPostPage />} />
@@ -89,7 +87,7 @@ const App = () => {
     return (
         <AuthProvider>
             <ProfileProvider>
-            <RouterProvider router={router} />{" "}
+                <RouterProvider router={router} />{" "}
             </ProfileProvider>
         </AuthProvider>
     );

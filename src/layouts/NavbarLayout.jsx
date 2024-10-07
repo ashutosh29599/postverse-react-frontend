@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ToastContainer } from "react-toastify";
 import { NavLink, Link, Outlet, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { Dropdown, DropdownItem } from "flowbite-react";
+import { Dropdown, DropdownDivider, DropdownItem } from "flowbite-react";
 
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
 
@@ -44,35 +44,70 @@ const NavbarLayout = () => {
                             Flowbite
                         </span>
                     </a> */}
+                    {/* Left */}
                     <Link to={"/home"}>
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                             <h1>PostVerse</h1>
                         </span>
                     </Link>
-                    {/* <button
-                        data-collapse-toggle="navbar-default"
-                        type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-default"
-                        aria-expanded="false"
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        <svg
-                            className="w-5 h-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 17 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M1 1h15M1 7h15M1 13h15"
-                            />
-                        </svg>
-                    </button> */}
+
+                    {/* Search Bar */}
+                    {/* <div className="w-1/2 flex justify-center items-center">
+                        <form class="w-full flex items-center max-w-sm mx-auto">
+                            <label for="simple-search" class="sr-only">
+                                Search
+                            </label>
+                            <div class="relative w-full">
+                                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg
+                                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                        />
+                                    </svg>
+                                </div>
+                                <input
+                                    type="text"
+                                    id="simple-search"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Search..."
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                                <svg
+                                    class="w-4 h-4"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                    />
+                                </svg>
+                                <span class="sr-only">Search</span>
+                            </button>
+                        </form>
+                    </div> */}
+
+                    {/* Right */}
                     <div
                         className="hidden w-full md:block md:w-auto"
                         id="navbar-default"
@@ -106,6 +141,8 @@ const NavbarLayout = () => {
                                             Settings
                                         </NavLink>
                                     </DropdownItem>
+
+                                    <DropdownDivider />
                                     <DropdownItem
                                         onClick={handleLogout}
                                         // className={currentPageHighlight}
@@ -113,18 +150,10 @@ const NavbarLayout = () => {
                                     >
                                         Logout 
                                     </DropdownItem>
-                                    {/* <DropdownItem>
-                                        <button
-                                            onClick={handleLogout}
-                                            className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-red-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                        >
-                                            Logout
-                                        </button>
-                                    </DropdownItem> */}
                                 </Dropdown>
                             </li>
                             <li>
-                            <DarkThemeToggle />
+                                <DarkThemeToggle />
                             </li>
 
                             {/* <li>

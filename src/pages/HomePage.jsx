@@ -3,7 +3,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaArrowsRotate } from "react-icons/fa6";
-// import { Spinner } from "flowbite-react";
+
+import { Dropdown, DropdownItem } from "flowbite-react";
+
 import LoadingComponent from "../components/Loading/LoadingComponent";
 
 import Post from "../components/Post/Post";
@@ -81,6 +83,16 @@ const HomePage = () => {
                 >
                     <FaArrowsRotate /> <span>Refresh</span>
                 </button>
+
+                {/* Sort by */}
+                {/* <div>
+                    <Dropdown label="Sort by" dismissOnClick={false} size="md">
+                        <DropdownItem>Latest First</DropdownItem>
+                        <DropdownItem>Oldest First</DropdownItem>
+                        <DropdownItem>Username Ascending</DropdownItem>
+                        <DropdownItem>Username Descending</DropdownItem>
+                    </Dropdown>
+                </div> */}
             </div>
 
             {posts.length > 0 ? (
