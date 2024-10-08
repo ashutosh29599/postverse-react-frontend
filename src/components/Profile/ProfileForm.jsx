@@ -1,12 +1,16 @@
 import React, { useContext, useRef, useState } from "react";
 import AuthContext from "../../context/AuthContext";
+import ProfileContext from "../../context/ProfileContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+
 import BoxComponent from "../Box/BoxComponent";
 
-const ProfileForm = ({ profile }) => {
+const ProfileForm = () => {
     const { user } = useContext(AuthContext);
+    const { profile } = useContext(ProfileContext);
+
     const username_value = `@${user}`;
     const navigate = useNavigate();
     const [profileFormData, setProfileFormData] = useState({
