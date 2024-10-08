@@ -19,8 +19,8 @@ const ProfileProvider = ({ children }) => {
             );
             const response = await axios.get(`/api/profiles/profile/${user}`);
             setProfile(response.data);
-            console.log(response.data);
-            console.log(user);
+            // console.log(response.data);
+            // console.log(user);
         } catch (error) {
             console.log("Error fetching user profile: ", error);
         } finally {

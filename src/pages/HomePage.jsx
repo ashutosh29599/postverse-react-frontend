@@ -4,13 +4,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaArrowsRotate } from "react-icons/fa6";
 
-import { Dropdown, DropdownItem } from "flowbite-react";
-
 import LoadingComponent from "../components/Loading/LoadingComponent";
-
 import Post from "../components/Post/Post";
-
-// TODO: add pagination to fetchPosts.
 
 const HomePage = () => {
     const [posts, setPosts] = useState([]);
@@ -18,22 +13,27 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
 
-    const fetchPosts = async (url = "/api/posts") => {
+    const fetchPosts = async (sortBy, url = "/api/posts/") => {
         try {
-            if (url != "/api/posts") {
+            if (url != "/api/posts/") {
                 setLoadingMore(true);
             }
 
+            if (sortBy) {
+                url = url + `?sort-by=${sortBy}`;
+            }
             const response = await axios.get(url);
 
-            const newPosts = response.data.results.filter(
-                (newPosts) => !posts.some((post) => post.id === newPosts.id)
-            );
+            if (sortBy) {
+                setPosts(response.data.results);
+            } else {
+                const newPosts = response.data.results.filter(
+                    (newPosts) => !posts.some((post) => post.id === newPosts.id)
+                );
 
-            setPosts((prevPosts) => [...newPosts, ...prevPosts]);
+                setPosts((prevPosts) => [...newPosts, ...prevPosts]);
+            }
             setNextPageURL(response.data.next);
-            // console.log(response.data);
-            // console.log(response.data.results[0]);
         } catch (error) {
             toast.error("Unable to fetch posts. Please try again later.");
             console.log("Error fetching posts:", error);
@@ -60,12 +60,31 @@ const HomePage = () => {
         fetchPosts();
     };
 
+    const handleSorting = (e) => {
+        e.preventDefault();
+        const selectedSortingCriteria = e.target.value;
+        let sortingCriteria;
+
+        // TODO: The backend needs to provide a better abstraction for this.
+        if (selectedSortingCriteria === "latest-first") {
+            sortingCriteria = "-updated_at";
+        } else if (selectedSortingCriteria === "oldest-first") {
+            sortingCriteria = "created_at";
+        } else if (selectedSortingCriteria === "username-ascending") {
+            sortingCriteria = "user__username";
+        } else if (selectedSortingCriteria === "username-descending") {
+            sortingCriteria = "-user__username";
+        }
+
+        fetchPosts(sortingCriteria);
+    };
+
     if (loading && posts.length === 0) {
         return <LoadingComponent />;
     }
 
     return (
-        <div className="flex flex-col gap-3 flex-1 items-center dark:bg-gray-900">
+        <div className="min-h-screen flex flex-col gap-3 flex-1 items-center dark:bg-gray-900">
             <p className="dark:text-white">Posts available: {posts.length}</p>
             <div className="flex flex-row">
                 <Link to={"/create-post"}>
@@ -85,14 +104,24 @@ const HomePage = () => {
                 </button>
 
                 {/* Sort by */}
-                {/* <div>
-                    <Dropdown label="Sort by" dismissOnClick={false} size="md">
-                        <DropdownItem>Latest First</DropdownItem>
-                        <DropdownItem>Oldest First</DropdownItem>
-                        <DropdownItem>Username Ascending</DropdownItem>
-                        <DropdownItem>Username Descending</DropdownItem>
-                    </Dropdown>
-                </div> */}
+                <div>
+                     
+                    <select
+                        id="sort-by"
+                        className="w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onChange={handleSorting}
+                    >
+                        <option selected>Sort By</option>
+                        <option value="latest-first">Latest First</option>
+                        <option value="oldest-first">Oldest First</option>
+                        <option value="username-ascending">
+                            Username Ascending
+                        </option>
+                        <option value="username-descending">
+                            Username Descending
+                        </option>
+                    </select>
+                </div>
             </div>
 
             {posts.length > 0 ? (
