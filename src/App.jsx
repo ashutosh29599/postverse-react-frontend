@@ -20,6 +20,7 @@ import Login from "./pages/Auth/LoginPage";
 // Protected Pages
 import NavbarLayout from "./layouts/NavbarLayout";
 import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/Search/SearchPage";
 
 // protected Auth
 import ChangePasswordPage from "./pages/Auth/ChangePasswordPage";
@@ -58,6 +59,7 @@ const router = createBrowserRouter(
                 }
             >
                 <Route path="/home" element={<HomePage />} />
+                <Route path="/search" element={<SearchPage />} />
                 
                 // protected Auth
                 <Route
