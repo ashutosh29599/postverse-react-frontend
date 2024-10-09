@@ -65,15 +65,14 @@ const HomePage = () => {
         const selectedSortingCriteria = e.target.value;
         let sortingCriteria;
 
-        // TODO: The backend needs to provide a better abstraction for this.
         if (selectedSortingCriteria === "latest-first") {
-            sortingCriteria = "-updated_at";
+            sortingCriteria = "latest_first";
         } else if (selectedSortingCriteria === "oldest-first") {
-            sortingCriteria = "created_at";
+            sortingCriteria = "oldest_first";
         } else if (selectedSortingCriteria === "username-ascending") {
-            sortingCriteria = "user__username";
+            sortingCriteria = "username_ascending";
         } else if (selectedSortingCriteria === "username-descending") {
-            sortingCriteria = "-user__username";
+            sortingCriteria = "username_descendingol";
         }
 
         fetchPosts(sortingCriteria);

@@ -26,8 +26,7 @@ const SettingsPage = () => {
                     type="button"
                     className="my-1 w-full text-slate-700 hover:text-white border border-slate-700 hover:bg-slate-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-slate-500 dark:text-slate-400 dark:hover:bg-gray-900 dark:hover:text-slate-400"
                 >
-                    {/* TODO: Get profile from ProfileContext */}
-                    <Link to={`/edit-profile/`} state={{ profile: profile }}>
+                    <Link to={`/edit-profile/`}>
                         Edit Profile
                     </Link>
                 </button>

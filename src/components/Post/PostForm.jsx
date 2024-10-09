@@ -55,9 +55,6 @@ const PostForm = ({ title, post_form_method }) => {
                 formData.append("photo", photo);
             }
 
-            console.log(formData);
-
-            //TODO: Refactor the following.
             if (post_form_method == "create_post") {
                 await axios.post(`/api/posts/`, formData, {
                     headers: {
@@ -65,7 +62,6 @@ const PostForm = ({ title, post_form_method }) => {
                     },
                     withCredentials: true,
                 });
-
                 toast.success("Post posted!");
             } else if (post_form_method == "edit_post") {
                 await axios.patch(`/api/posts/${post.id}/`, formData, {
@@ -74,7 +70,6 @@ const PostForm = ({ title, post_form_method }) => {
                     },
                     withCredentials: true,
                 });
-
                 toast.success("Post updated!");
             }
         } catch (error) {
