@@ -4,6 +4,7 @@ import axios from "axios";
 
 import BoxComponent from "../../components/Box/BoxComponent";
 import Post from "../../components/Post/Post";
+import UserCard from "../../components/User/UserCard";
 
 const SearchPage = () => {
     const [searchParams] = useSearchParams();
@@ -11,17 +12,25 @@ const SearchPage = () => {
     const searchCriteria = searchParams.get("search-criteria");
 
     const [posts, setPosts] = useState([]);
+    const [users, setUsers] = useState([]);
 
     const fetchPosts = async () => {
         let url;
 
         if (searchCriteria === "search-posts-by-username") {
             url = `api/posts?username=${searchQuery}`;
+        } else if (searchCriteria === "search-users") {
+            url = `/api/accounts/?username=${searchQuery}&all=true`;
         }
 
         try {
             const response = await axios.get(url);
-            setPosts(response.data.results);
+            if (searchCriteria === "search-posts-by-username") {
+                setPosts(response.data.results);
+            } else if (searchCriteria === "search-users") {
+                console.log(response.data);
+                setUsers(response.data)
+            }
         } catch (error) {
             console.log("Unable to fetch posts, ", error);
         }
@@ -30,9 +39,6 @@ const SearchPage = () => {
     useEffect(() => {
         fetchPosts();
     }, []);
-
-    console.log(searchParams);
-    console.log(searchQuery);
 
     return (
         <BoxComponent>
@@ -43,20 +49,43 @@ const SearchPage = () => {
                 <Link to={"/home"}>Back</Link>
             </button>
 
-            <div className="flex flex-col justify-center gap-2">
-                {searchCriteria === "search-posts-by-username" && (
-                    <div className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">
-                        You searched for posts by {searchQuery}.
-                    </div>
-                )}
-                <div className="flex flex-col gap-3 justify-center">
-                    {posts.length > 0 ? (
-                        posts.map((post) => <Post key={post.id} post={post} />)
-                    ) : (
-                        <p>No posts available.</p>
+            {searchCriteria === "search-posts-by-username" && (
+                <div className="flex flex-col justify-center gap-2">
+                    {searchCriteria === "search-posts-by-username" && (
+                        <div className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">
+                            You searched for posts by {searchQuery}.
+                        </div>
                     )}
+                    <div className="flex flex-col gap-3 justify-center">
+                        {posts.length > 0 ? (
+                            posts.map((post) => (
+                                <Post key={post.id} post={post} />
+                            ))
+                        ) : (
+                            <p className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">No posts available.</p>
+                        )}
+                    </div>
                 </div>
-            </div>
+            )}
+
+            {searchCriteria === "search-users" && (
+                <div className="flex flex-col justify-center gap-2">
+                    {searchCriteria === "search-posts-by-username" && (
+                        <div className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">
+                            You searched for the user {searchQuery}.
+                        </div>
+                    )}
+                    <div className="flex flex-col gap-3 justify-center">
+                        {users.length > 0 ? (
+                            users.map((user) => (
+                                <UserCard key={user.username} user={user} />
+                            ))
+                        ) : (
+                            <p className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">No user available by that username.</p>
+                        )}
+                    </div>
+                </div>
+            )}
         </BoxComponent>
     );
 };

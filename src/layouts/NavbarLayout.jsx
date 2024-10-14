@@ -107,6 +107,9 @@ const NavbarLayout = () => {
                                 <option value="search-posts-by-username">
                                     Search Posts by Username
                                 </option>
+                                <option value="search-users">
+                                    Search Users
+                                </option>
                             </select>
 
                             <button
