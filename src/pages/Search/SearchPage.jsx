@@ -21,15 +21,19 @@ const SearchPage = () => {
             url = `api/posts?username=${searchQuery}`;
         } else if (searchCriteria === "search-users") {
             url = `/api/accounts/?username=${searchQuery}&all=true`;
+        } else if (searchCriteria === "search-posts") {
+            url = `api/posts?text=${searchQuery}`;
         }
 
         try {
             const response = await axios.get(url);
-            if (searchCriteria === "search-posts-by-username") {
+            if (
+                searchCriteria === "search-posts-by-username" ||
+                searchCriteria === "search-posts"
+            ) {
                 setPosts(response.data.results);
             } else if (searchCriteria === "search-users") {
-                console.log(response.data);
-                setUsers(response.data)
+                setUsers(response.data);
             }
         } catch (error) {
             console.log("Unable to fetch posts, ", error);
@@ -49,7 +53,8 @@ const SearchPage = () => {
                 <Link to={"/home"}>Back</Link>
             </button>
 
-            {searchCriteria === "search-posts-by-username" && (
+            {(searchCriteria === "search-posts-by-username" ||
+                searchCriteria === "search-posts") && (
                 <div className="flex flex-col justify-center gap-2">
                     {searchCriteria === "search-posts-by-username" && (
                         <div className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">
@@ -62,7 +67,9 @@ const SearchPage = () => {
                                 <Post key={post.id} post={post} />
                             ))
                         ) : (
-                            <p className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">No posts available.</p>
+                            <p className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">
+                                No posts available.
+                            </p>
                         )}
                     </div>
                 </div>
@@ -81,7 +88,9 @@ const SearchPage = () => {
                                 <UserCard key={user.username} user={user} />
                             ))
                         ) : (
-                            <p className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">No user available by that username.</p>
+                            <p className="flex justify-center font-bold text-2xl my-3 dark:text-slate-500">
+                                No user available by that username.
+                            </p>
                         )}
                     </div>
                 </div>
