@@ -14,15 +14,15 @@ const SearchPage = () => {
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
 
-    const fetchPosts = async () => {
+    const fetchPosts = async (sortBy = "latest_first") => {
         let url;
 
         if (searchCriteria === "search-posts-by-username") {
-            url = `api/posts?username=${searchQuery}`;
+            url = `api/posts?username=${searchQuery}&sort-by=${sortBy}`;
         } else if (searchCriteria === "search-users") {
             url = `/api/accounts/?username=${searchQuery}&all=true`;
         } else if (searchCriteria === "search-posts") {
-            url = `api/posts?text=${searchQuery}`;
+            url = `api/posts?text=${searchQuery}&sort-by=${sortBy}`;
         }
 
         try {
@@ -44,6 +44,24 @@ const SearchPage = () => {
         fetchPosts();
     }, []);
 
+    const handleSorting = (e) => {
+        e.preventDefault();
+        const selectedSortingCriteria = e.target.value;
+        let sortingCriteria;
+
+        if (selectedSortingCriteria === "latest-first") {
+            sortingCriteria = "latest_first";
+        } else if (selectedSortingCriteria === "oldest-first") {
+            sortingCriteria = "oldest_first";
+        } else if (selectedSortingCriteria === "username-ascending") {
+            sortingCriteria = "username_ascending";
+        } else if (selectedSortingCriteria === "username-descending") {
+            sortingCriteria = "username_descending";
+        }
+
+        fetchPosts(sortingCriteria);
+    };
+
     return (
         <BoxComponent>
             <button
@@ -52,6 +70,43 @@ const SearchPage = () => {
             >
                 <Link to={"/home"}>Back</Link>
             </button>
+
+            {/* Sort by -- Search posts by username */}
+            {searchCriteria === "search-posts-by-username" && (
+                <div>
+                    <select
+                        id="sort-by"
+                        className="my-2 w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onChange={handleSorting}
+                    >
+                        <option selected>Sort By</option>
+                        <option value="latest-first">Latest First</option>
+                        <option value="oldest-first">Oldest First</option>
+                    </select>
+                </div>
+            )}
+
+            {/* Sort by -- Search posts */}
+            {searchCriteria === "search-posts" && (
+                <div>
+                    <select
+                        id="sort-by"
+                        className="my-2 w-32 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        onChange={handleSorting}
+                    >
+                        <option selected>Sort By</option>
+                        <option value="latest-first">Latest First</option>
+                        <option value="oldest-first">Oldest First</option>
+                        <option value="username-ascending">
+                            Username Ascending
+                        </option>
+                        <option value="username-descending">
+                            Username Descending
+                        </option>
+                    </select>
+                </div>
+            )}
+            
 
             {(searchCriteria === "search-posts-by-username" ||
                 searchCriteria === "search-posts") && (
